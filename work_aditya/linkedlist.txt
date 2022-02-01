@@ -1,0 +1,11 @@
+linkedlist implement
+reverse
+find middle
+nth node from last
+delete nth node from last
+add two numbers
+cycle detect
+cycle start node
+linked list partition
+swap nodes in pair
+copy list with random pointers
