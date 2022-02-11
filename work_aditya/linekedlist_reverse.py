@@ -8,7 +8,6 @@ def reverse(head):
         prev=curr
         curr=next
     return prev
-
 #2nd approach is recursive
 h=None
 def revereseDriver(head):

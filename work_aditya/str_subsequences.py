@@ -19,7 +19,6 @@ def subsequences2(str, n, curr="", index=-1):
         #backtrack step
         curr=curr[0:len(curr)-1]
         # print('After erase: ', curr)
-
     return 
 
 

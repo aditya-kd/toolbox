@@ -18,5 +18,4 @@ def startofCycle(head):
             fast=fast.next
             slow=slow.next
             
-            
         return fast

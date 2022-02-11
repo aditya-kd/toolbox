@@ -19,8 +19,6 @@ def coin_change(amount, coins):
         x=coins[i]
         for j in range(x, len(dp)):
             dp[j] += dp[j-x]
-            
-            
     return dp[amount]
 
 
