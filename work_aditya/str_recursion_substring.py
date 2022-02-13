@@ -1,19 +1,22 @@
-from copy import copy
+from copy import copy as cp
 global result
-def subsets(self, nums):
-        self.result = []
-        self.solve(0, nums, [])
-        return self.result
+def subsets( nums):
+        result = []
+        solve(0, nums, [])
+        return result
         
-def solve(self, i, nums, out):
+def solve( i, nums, out):
         
         if i==len(nums):
-            self.result.append(out)
+            result.append(out)
             return
         
-        out1 = copy.deepcopy(out)
-        out2 = copy.deepcopy(out)
+        out1 =  cp.deepcopy(out)
+        out2 = cp.deepcopy(out)
         
         out1.append(nums[i])
-        self.solve(i+1, nums, out1)
-        self.solve(i+1, nums, out2)
+        solve(i+1, nums, out1)
+        solve(i+1, nums, out2)
+
+instr=[1,2,3]
+subsets(instr)
