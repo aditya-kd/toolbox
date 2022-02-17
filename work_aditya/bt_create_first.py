@@ -61,7 +61,7 @@ class BinaryTree:
             ans=1
         return ans+self.numNonLeafNodes(root.left)+self.numNonLeafNodes(root.right)
 
-    def levelOrder(self, root):#uses bfs
+    def levelOrder(self, root):#uses bfs (breadth) not depth
         bfs = []
         if root ==None:
             return bfs

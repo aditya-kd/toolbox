@@ -3,14 +3,12 @@ def twoSum( nums, target):
         
         for i in range(0, len(nums)):
             
-            dif=target+nums[i]
+            dif = target + nums[i]
             if dif in mp:
                 print( [mp[dif], i])
             else:
                 mp[nums[i]]=i
         return
-    
-
 
 ls=[1,5,3,4,2]
 target=2
