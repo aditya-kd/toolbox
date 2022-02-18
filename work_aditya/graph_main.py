@@ -1,4 +1,5 @@
 from collections import deque
+from tkinter.tix import Tree
 class Graph:
     
     def __init__(self, vertices):
@@ -58,7 +59,81 @@ class Graph:
             if not visited[vertex]:
                 self.dfs_recursive(vertex, visited, dfs_ans)
 
-        return dfs_ans    
+        return dfs_ans   
+    #CYCLE CHECKING/DETECTION
+    #USING BFS UNDIRECTED
+    def checkCycle(self, adj, s, vis, parent):
+        q=deque()
+        q.add((s,-1))
+        vis[s]=True
+        while len(q)>0:
+            node= q[0][0]
+            par= q[0][1]
+            q.popleft()
+
+            for i in adj[node]:
+                if vis[i]==False:
+                    q.append((i, node))
+                    vis[i]=True
+                elif par!=i:
+                    return True
+        return False
+    def isCycle(self, vertices, adjlist): 
+        visited=[False]*vertices
+        parent=[-1]*vertices
+        for i in range(0, vertices):
+            if visited[i]==False:
+                if self.checkCycle(adjlist, i, visited, parent):
+                    return True
+        return False
+    #Check Cycle DFS UNDIRECTED GRAPH
+    def checkForCycle(self, node, parent, vis, adj):
+        vis[node]=True
+        for i in adj[node]:
+            if vis[i]==False:
+                if self.checkForCycle(i, node, vis, adj)==True:
+                    return True
+            elif i!=parent:
+                return True
+        return False
+    def isCycle(self, v, adj):
+        vis=[False]*v
+        for i in range(0, v):
+            if vis[i]==False:
+                if self.checkForCycle(i, -1, vis, adj):
+                    return True
+        return False
+
+    def bfCheck(self, adj, node, color):
+        q=deque()
+        q.append(node)
+        color[node]=1
+        while len(q)>0:
+            curr = q.popleft()
+            for i in adj[node]:
+                if color[i]==-1:
+                    color[i]=1-color[node]
+                    q.append(i)
+                elif color[i]== color[node]:
+                    return False
+        return True
+    def isBipartite(self, adj, vertices):
+        color=[-1]*vertices
+        for i in range(0, vertices):
+            if color[i]==-1:
+                if self.bfscheck(adj, i, color):
+                    return False
+
+        return True
+
+    def findNoofPaths(self, src, dest, graph):
+        if src==dest:
+            return 1
+        pathCount=0
+        for nbr in graph[src]:
+            pathCount+= self.findNoofPaths(nbr, dest, graph)
+        return pathCount
+    
     # def bfsComponent(self, vertex, visited, bfs_ans):
     #     visited[vertex]=True
     #     q= deque()
