@@ -1,5 +1,7 @@
 from collections import deque
+from ssl import VerifyFlags
 from tkinter.tix import Tree
+from turtle import Turtle
 class Graph:
     
     def __init__(self, vertices):
@@ -103,7 +105,50 @@ class Graph:
                 if self.checkForCycle(i, -1, vis, adj):
                     return True
         return False
-
+    #CHECK CYCLE DFS DIRECTED GRAPH
+    def checkDFS(self, node, adj, vis, dfsvis):
+        vis[node]=True
+        dfsvis[node]=True
+        for i in adj[node]:
+            if vis[node]==0:
+                if self.checkDFS(i, adj, vis, dfsvis)==True:
+                    return True
+            elif dfsvis[i]==True:
+                return True
+        dfsvis[node]=False
+        return False
+    def isCycleDFS(self, vertices, adj):
+        vis=[False]*vertices
+        dfsvis=[False]*vertices
+        for i in range(0, vertices):
+            if vis[i]==False:
+                if self.checkDFS(i, adj, vis, dfsvis)==True:
+                    return True
+        return False
+    #CHECK CYCLE BFS(KAHN'S ALGORITHM) DIRECTED GRAPH
+    #if there is a cycle topo sort won't be successful.
+    def isCyclic(vertices, adj):
+        q=deque()
+        indegree=[0]*vertices
+        for i in range(0, vertices):
+            for i in adj[i]:
+                indegree[i]+=1
+        for i in range(0, vertices):
+            if indegree[i]==0:
+                q.append(i)
+        cnt=0
+        while len(q)>0:
+            node= q.popleft()
+            cnt+=1
+            for i in adj[node]:
+                indegree[i]+=1
+                if indegree[i]==0:
+                    q.append(i)
+        if cnt==vertices:
+            return False
+        return True
+        
+#BIPARTITE BFS
     def bfCheck(self, adj, node, color):
         q=deque()
         q.append(node)
@@ -125,6 +170,68 @@ class Graph:
                     return False
 
         return True
+#Bipartit DFS
+    def dfscheck(self, node, vis, adj, dfsans):
+        dfsans.append(node)
+        vis[node]=True
+        for i in adj[node]:
+            if vis[i]==False:
+                self.dfs(i, vis, adj, dfsans)
+
+    def isBipartiteDFS(self, adj, vertices):
+        dfsans=[]
+        vis=[False]*(vertices+1)
+        for i in range(1, vertices+1):
+            if vis[i]==False:
+                self.dfscheck(i, vis, adj, dfsans)
+        return dfsans
+        #TOPOLOGICAL SORTING
+        #DFS
+    def findTopoSort(self, node, vis, adj, st):
+        vis[node]=True
+        for i in adj[node]:
+            if vis[i]==False:
+                self.findTopoSort(i, vis, adj,st)
+        st.append(node)
+    def topoSort(self, vertices, adj):
+        st=[]
+        vis=[False]*vertices
+        for i in range(0, vertices):
+            if vis[i] == False:
+                self.findTopoSort(self, i, vis, adj, st)
+
+        topo=[]*vertices
+        ind =0
+        while len(st)>0:
+            topo[ind] = st.pop()
+            ind+=1
+        return topo
+    
+    #TOPOLOGICAL SORTING BFS(KAHN's ALGORITHM)
+    def topoSortBFS(self, vertices, adj):
+        topo=[]*vertices
+        indegree=[]*vertices
+        for i in range(0, vertices):
+            for i in adj[i]:
+                indegree[i]+=1
+        q= deque()
+        for i in range(0, vertices):
+            if indegree[i]==0:
+                q.append(i)
+        cnt=0
+        ind=0
+        while len(q)>0:
+            node= q.popleft()
+            topo[ind]=node
+            ind+=1
+
+            for i in adj[node]:
+                indegree[i]-=1
+                if indegree[i]==0:
+                    q.append(i)
+
+        return topo
+
 
     def findNoofPaths(self, src, dest, graph):
         if src==dest:
