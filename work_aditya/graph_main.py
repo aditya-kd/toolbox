@@ -1,7 +1,8 @@
 from collections import deque
-from ssl import VerifyFlags
-from tkinter.tix import Tree
-from turtle import Turtle
+from queue import PriorityQueue
+import sys
+from tkinter import N
+
 class Graph:
     
     def __init__(self, vertices):
@@ -110,7 +111,7 @@ class Graph:
         vis[node]=True
         dfsvis[node]=True
         for i in adj[node]:
-            if vis[node]==0:
+            if vis[node]==False:
                 if self.checkDFS(i, adj, vis, dfsvis)==True:
                     return True
             elif dfsvis[i]==True:
@@ -176,7 +177,7 @@ class Graph:
         vis[node]=True
         for i in adj[node]:
             if vis[i]==False:
-                self.dfs(i, vis, adj, dfsans)
+                self.dfscheck(i, vis, adj, dfsans)
 
     def isBipartiteDFS(self, adj, vertices):
         dfsans=[]
@@ -240,7 +241,105 @@ class Graph:
         for nbr in graph[src]:
             pathCount+= self.findNoofPaths(nbr, dest, graph)
         return pathCount
+
+    #SHORTEST PATH
+    #DFS
+    def shortestPathDFS(adj, vertices, src):
+        dist=[]*vertices
+        for i in range(0, vertices):
+            dist[i]= 10000000
+        q=deque()
+        dist[src] = 0
+        q.append(src)
+
+        while len(q)>0:
+            node= q.popleft()
+            for i in adj[node]:
+                if dist[node] +1 < dist[i]:
+                    dist[i] = dist[node]+1
+                    q.append(i)
+        #print result
+        print('Shortest Distance for each node')
+        for i in range(0, vertices):
+            print(i, dist[i],'units')
+        return dist
+    #TOPO + BFS (DAG)
+    def toposort(self, node, vis, adj, st):
+        vis[node]= True
+        for i in adj[node]:
+            self.toposort(i, vis, adj, st)
+        st.append(node)
+
+    def shortestPathDAG(self, src, adj, vertices):
+        st=[]
+        dist=[sys.maxsize]*vertices
+        vis=[False]*vertices
+        dist[src]=0
+        for i in range(0, vertices):
+            if vis[i]==False:
+                self.toposort(i, vis, adj, st)
+        
+        while len(st)>0:
+            node= st.pop()
+            if dist[node]!= sys.maxsize:
+                for pair in adj[node]:
+                    if dist[node] + pair[1] < dist[pair[0]]:
+                        dist[pair[0]] = dist[node] + pair[1]
+        return dist
+    #DIJKSTRA [Directed/Undirected No -ve weighted]
+    def dijkstra(self, src, adj, vertices):
+        dist=[sys.maxisze]*vertices
+        dist[src]=0
+        
+        pq= PriorityQueue()
+        pq.put((src,0))
+
+        while len(pq)>0:
+            node = pq.get()
+
+            for it in adj[node[0]]:
+                if dist[node[0]] + it[1] < dist[it[0]]:
+                    dist[it[0]] = dist[node[0]] + it[1]
+                    pq.put((it[0], dist[it[0]]))
+        return dist
+    #CONNECTED COMPONENTS
+    def countComponents(self, vertices, edges):
+        parent= [i for i in range(vertices)]
+        rank = [1]*vertices
+        
+        def find(n1):
+            res= n1
+            while res != parent[res]:
+                parent[res] = parent[parent[res]]
+                res = parent[res]
+            return res
+        
+        def union(n1, n2):
+            p1, p2= find(n1), find(n2)
+            if p1 == p2:
+                return 0
+
+            if rank[p2] > rank[p1]:
+                parent[p1] = p2
+                rank[p2]+= rank[p2]
+            return 1
+        res = vertices
+        for n1, n2 in edges:
+            res -= union(n1, n2)
+        return res#no. of connected components
+
     
+    
+g=Graph(4)
+g.add_edges(0,1)
+g.add_edges(1,2)
+g.add_edges(3,0)
+g.display()
+print(g.bfs(0))
+print(g.bfsGraph(0))
+# print(g.dfs(3))
+            
+
     # def bfsComponent(self, vertex, visited, bfs_ans):
     #     visited[vertex]=True
     #     q= deque()
@@ -263,16 +362,4 @@ class Graph:
     #     for vertex in self.adjacency_list[source]:
     #         if not visited[vertex]:        
     #             self.bfsComponent(vertex, visited, bfs_ans)
-    #     return bfs_ans  
-
-    
-    
-g=Graph(4)
-g.add_edges(0,1)
-g.add_edges(1,2)
-g.add_edges(3,0)
-g.display()
-print(g.bfs(0))
-print(g.bfsGraph(0))
-# print(g.dfs(3))
-            
+    #     return bfs_ans 
