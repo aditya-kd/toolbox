@@ -132,8 +132,8 @@ class Graph:
         q=deque()
         indegree=[0]*vertices
         for i in range(0, vertices):
-            for i in adj[i]:
-                indegree[i]+=1
+            for t in adj[i]:
+                indegree[t]+=1
         for i in range(0, vertices):
             if indegree[i]==0:
                 q.append(i)
@@ -142,14 +142,14 @@ class Graph:
             node= q.popleft()
             cnt+=1
             for i in adj[node]:
-                indegree[i]+=1
+                indegree[i]-=1
                 if indegree[i]==0:
                     q.append(i)
         if cnt==vertices:
             return False
         return True
         
-#BIPARTITE BFS
+    #BIPARTITE BFS
     def bfCheck(self, adj, node, color):
         q=deque()
         q.append(node)
