@@ -11,25 +11,25 @@ def rmcm(arr, i, j):
 def mcm(arr, n):
     return rmcm(arr, 1, n-1)
 
-# import sys
-# def rmcm(arr, i, j,dp):
-#     minimum=sys.maxsize
-#     if i==j: 
-#         dp[i][j]=0
+import sys
+def rmcm2(arr, i, j,dp):
+    minimum=sys.maxsize
+    if i==j: 
+        dp[i][j]=0
         
 
-#     if dp[i][j]!=-1:
-#         return dp[i][j]
-#     for k in range(i,j):
-#         count = rmcm(arr, i,k, dp)+ rmcm(arr, k+1,j, dp)+arr[i-1]*arr[k]*arr[j]
-#         if count< minimum:
-#             minimum=count
-#     dp[i][j]=minimum
-#     return dp[i][j]
+    if dp[i][j]!=-1:
+        return dp[i][j]
+    for k in range(i,j):
+        count = rmcm(arr, i,k, dp)+ rmcm(arr, k+1,j, dp)+arr[i-1]*arr[k]*arr[j]
+        if count< minimum:
+            minimum=count
+    dp[i][j]=minimum
+    return dp[i][j]
 
-# def mcm(arr, n):
-#     dp =[[-1]*(n) for i in range(n)]
-#     return rmcm(arr, 1, n-1, dp)
+def mcm2(arr, n):
+    dp =[[-1]*(n) for i in range(n)]
+    return rmcm(arr, 1, n-1, dp)
 
 ls=[2,3,4,3,5]
 n=len(ls)
