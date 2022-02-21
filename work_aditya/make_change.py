@@ -12,13 +12,13 @@ def make_change(denomination_list, amount):
     if cnt==0:
         return -1
 
-def coin_change(amount, coins):
+def coin_change_main(amount, coins):
     dp=[0]*(amount+1)
     dp[0]=1
     for i in range(0,len(coins)):
-        x=coins[i]
-        for j in range(x, len(dp)):
-            dp[j] += dp[j-x]
+        coin=coins[i]
+        for j in range(coin, len(dp)):
+            dp[j] += dp[j-coin]
     return dp[amount]
 
 
@@ -35,6 +35,23 @@ def count_change(amount, coins):
         
     return count_change( coins[0:len(coins)-1], amount) + count_change(coins, amount-coins[-1])
 
+def count_change_2d(amount, coins):
 
-print(count_change(200, [50, 25, 10, 5, 2, 1]))
+    dp=[ [0]*(amount+1) for i in range(len(coins))]
+    for i in range(len(coins)):
+        dp[i][0]=1
+
+    for i in range(0, len(coins)):
+        for j in range(1, amount+1):
+            if j< coins[i]:
+                if i>0:
+                    dp[i][j]=dp[i-1][j]
+            else:
+                    dp[i][j] = dp[i-1][j]+dp[i][j-coins[i]]
+    return dp[len(coins)-1][amount]
+
+
+# print(count_change_2d(1, [50, 25, 10, 5, 2, 1]))
+print(count_change_2d(5, [1,2,5]))
+
         
