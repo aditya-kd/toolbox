@@ -50,8 +50,7 @@ def count_change_2d(amount, coins):
                     dp[i][j] = dp[i-1][j]+dp[i][j-coins[i]]
     return dp[len(coins)-1][amount]
 
-
-# print(count_change_2d(1, [50, 25, 10, 5, 2, 1]))
-print(count_change_2d(5, [1,2,5]))
+print(count_change_2d(5, [50, 25, 10, 5, 2, 1]))
+# print(count_change_akashsir(5, [1,2,5]))
 
         

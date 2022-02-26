@@ -1,7 +1,7 @@
 import math
 
 def isPalindromic(string, i, j):
-    return (string[i:j+1])== string[i: j+1][::-1]
+    return (string[i:j+1]) == string[i: j+1][::-1]
 
 def mcm(string, i, j):
     if i==j or isPalindromic(string , i, j):
