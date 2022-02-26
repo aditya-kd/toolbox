@@ -1,7 +1,27 @@
+#using heap
+from queue import PriorityQueue
+import heapq
+def mergeKLists(self, lists):
+        head = point = ListNode(0)
+        q = []
+        for ls in lists:
+            if ls:
+                heapq.heappush(q, (ls.val, ls))
+        while len(q)>0:
+            val, node = heapq.heappop(q)
+            point.next = ListNode(val)
+            point = point.next
+            node = node.next
+            if node:
+                heapq.heappush((node.val, node))
+        return head.next
+
+#normal merge and conquer
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
 def mergeKSortedLists(lists):
     if lists==None or len(lists)==0:
         return None
