@@ -1,15 +1,15 @@
 def fractionalKnapsack(data, capacity):
-    data.sort(reverse=True, key=lambda x:x[1]//x[0])
+    data.sort(reverse=True, key=lambda x:x[1]//x[0])#sorting on the basis of ratio
     total=0
     for item in data:
         curwt= item[0]
         curval= item[1]
         print(curwt, curval)
-        if capacity-curwt >=0:
+        if capacity-curwt >=0: #subtracting whole values
             capacity-= curwt
             total +=curval
         else:
-            fraction = capacity/curwt
+            fraction = capacity/curwt#substracting fractions
             total+= curval*fraction
             capacity = int(capacity -(curwt*fraction))
             break

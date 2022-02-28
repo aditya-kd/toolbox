@@ -5,7 +5,6 @@ class Node:
         self.left= left
         self.right= right
         self.huff=''
-    
 
 def printNodes(node, val=''):
     newVal= val+ str(node.huff)
@@ -13,7 +12,6 @@ def printNodes(node, val=''):
         printNodes(node.left, newVal)
     if node.right:
         printNodes(node.right, newVal)
-    
     if not node.left and not node.right:
         print(node.symbol,'->',newVal)
 

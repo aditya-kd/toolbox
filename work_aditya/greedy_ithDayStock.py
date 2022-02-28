@@ -7,7 +7,7 @@ def buyMaxStacks(n,k, price):
     for i in range(n):
         p=min(arr[i][0], k//arr[i][1])
         total_purchase+=p
-        k-=(p*arr[i][1])
+        k-=(p*arr[i][1])#reducing the input amount
     return total_purchase
 
 price=[10,7,19]

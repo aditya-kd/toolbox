@@ -10,12 +10,12 @@ def backtrack(self, nums, n, partSol, allSols):
             self.backtrack(nums, n-1, temp_list, allSols)
             # partSol.pop()
             return
-    def soln_bk(self, nums):
+def soln_bk(self, nums):
         allSols=[]
         partialSoln=[]
         self.backtrack(nums, len(nums), partialSoln, allSols)
         return allSols
     
         
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+def subsets(self, nums):
         return self.soln_bk(nums)
