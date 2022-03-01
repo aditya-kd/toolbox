@@ -13,7 +13,6 @@ def bt(candidate, idx, target, par, all):
         temp_list.append(candidate[idx])
         #only one change than template, idx+1 not done, only idx passed
         bt(candidate, idx, target-candidate[idx], temp_list, all)
-        # print('partsol',par)
 
 def combinationSum(candidates,target):
     all=[]
