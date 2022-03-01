@@ -4,7 +4,7 @@ def backtrack(candidate, idx, target, partSol, allSol):
     elif idx==len(candidate):
         return 
     elif target<0:
-        return
+        return 
     else:
         temp_list=partSol[::]
         temp_list.append(candidate[idx])

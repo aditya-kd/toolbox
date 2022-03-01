@@ -13,8 +13,6 @@ def backtrack(candidate, idx, k, target, partSol, allSol):
     if k==0:
         if target==0:
             allSol.append(partSol)
-        else:
-            pass#branch pruning
         return
 
     if target==0:

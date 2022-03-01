@@ -19,6 +19,6 @@ def countSubstrings(str, n):
     #if we include empyt string then total becomes
     #n*n(n-1)/2 + 1
     return (n*(n+1))//2 +1
-str='aditya'
+str='13'
 substring2(str,len(str))
 print(countSubstrings(str,len(str)))
