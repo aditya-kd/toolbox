@@ -8,6 +8,7 @@ def maxProductSubarray(arr):
         temp=curMax*n
         curMax=max(n*curMax, n*curMin, n)
         curMin=min(temp, n*curMin, n)
+        print(curMax, curMin)
         res=max(res, curMax)
 
     return res

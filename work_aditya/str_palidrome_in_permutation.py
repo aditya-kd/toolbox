@@ -1,5 +1,3 @@
-from gettext import find
-
 
 def findPalindrome(s):
     mp={}

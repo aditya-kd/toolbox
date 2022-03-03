@@ -9,6 +9,6 @@ def substring2(str, n):
     return total
 
 
-s='123'
+s='1234'
 n=len(s)
 print(substring2(s,n))

@@ -23,7 +23,7 @@ def combSum2(candidate, target):
     backtrack(candidate, 0, target, partSol, allSol)
     return allSol
 
-candidates = [10,1,2,7,6,1,5]
+candidates = [10,8,7]
 target=8
 print(combSum2(candidates, target))
 

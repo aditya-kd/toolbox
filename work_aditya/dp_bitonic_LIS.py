@@ -12,6 +12,8 @@ def LIS(arr):
         if dp[i] >omax:
             omax=dp[i]
     print(omax)
+    print(dp)
 
 ls=[10,22,9,33,21,50,41,60,80,3]
+ls=[21,4,2,16,17,3,13,14]
 LIS(ls)
