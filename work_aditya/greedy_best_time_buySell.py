@@ -1,6 +1,4 @@
 import sys
-
-
 def bestTime(prices):
     profit=0
     minm=sys.maxsize

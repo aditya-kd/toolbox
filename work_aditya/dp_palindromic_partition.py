@@ -1,4 +1,5 @@
 import math
+from typing import final
 
 def isPalindromic(string, i, j):
     return (string[i:j+1]) == string[i: j+1][::-1]
@@ -17,33 +18,61 @@ def mcm(string, i, j):
 def palindromicPartitioning(string):
     ans = mcm(string, 0, len(string)-1)
     return ans
-
 #apprach 2
 def isPal(s, l,r):
     while l<r:
+    
         if s[l] != s[r]:
             return False
         l+=1
         r-=1
     return True
 
+def separate(i, s, partSol, res):
+    if i>=len(s):
+        res.append(partSol[::])
+        return
+    for j in range(i, len(s)):
+        if isPal(s, i,j):
+            temp=partSol[::]
+            temp.append(s[i:j+1])
+            # partSol.append(s[i:j+1])
+            separate(j+1, s, temp, res)
+            partSol.pop()
+    return res
+def rahulsir(s, dp):
+    n=len(s)
+    res=[]
+    for j in range(1, len(s)):
+        for i in range(j, 0, -1):
+            if dp[i][j]:
+                mini = min(mini, res[i-1])
+                res[i]= mini+1
+    print(res[n-1])
 def parition(s):
     res=[]
     part=[]
-    def dfs(i):
-        if i>= len(s):
-            res.append(part[::])
-            return 
-        for j in range(i, len(s)):
-            if isPal(s, i,j):
-                part.append(s[i:j+1])
-                dfs(j+1)
-                part.pop()
-    dfs(0)
+    # def separateinside(i):
+    #     if i>= len(s):
+    #         res.append(part[::])
+    #         return 
+    #     for j in range(i, len(s)):
+    #         if isPal(s, i,j):
+    #             part.append(s[i:j+1])
+    #             separateinside(j+1)
+    #             part.pop()
+
+
+    separate(0)
     return res
 if __name__ == '__main__':
-    string ='aab'
-    # ans = palindromicPartitioning(string)
-    # print(ans)
-    print(parition(string))
+    string ='eegiicgaeadbcfacfhifdbiehbgejcaeggcgbahfcajfhjjdgj'
+    ans = palindromicPartitioning(string)
+    print(ans)
+    # finalans=parition(string)
+    # print('No of cuts')
+    # print(len(finalans[-1])-1)
+    # for i in (parition(string)):
+    #     print(i)
+
 

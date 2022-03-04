@@ -12,7 +12,7 @@ def maxSubArr(arr):
     return overall
 
 
-ls=[-2, -3, 4, -1, 2, 1, -3]
+ls=[-2, -3, -4, -1, 2, -1, -3]
 print(maxSubArr(ls))
 
 
