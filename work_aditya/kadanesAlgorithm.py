@@ -9,10 +9,12 @@ def maxSubArr(arr):
             curSum=arr[i]
         if curSum>overall:
             overall=curSum
+        print(curSum)
     return overall
 
 
 ls=[-2, -3, -4, -1, 2, -1, -3]
+ls=[1,-2,0,3]
 print(maxSubArr(ls))
 
 

@@ -9,7 +9,6 @@ def rodCutting(wt, val, w, n):
                 dp[i][j] = max(dp[i-1][j], val[n-1]+dp[i][j-wt[i-1]])
     return dp[n][w]
 
-
 w=6
 pieces=[i for i in range(1, w+1)]
 print(pieces)
