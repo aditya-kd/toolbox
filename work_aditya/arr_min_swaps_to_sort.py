@@ -14,6 +14,7 @@ def minSwaps(arr):
             mp[clone[gi]]=bi
             swaps+=1
     print(swaps)
+    print(clone)#this gets printed as sorted
     return swaps
 
 arr=[4,3,1,2,5,6]

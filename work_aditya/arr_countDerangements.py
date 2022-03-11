@@ -1,4 +1,3 @@
-from itertools import count
 def countDerangement(n):
     if n==1:#no possiblity
         return 0

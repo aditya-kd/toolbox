@@ -79,6 +79,25 @@ class BinaryTree:
                     queue.append(current.right)
             bfs.append(current_level)
         return bfs
+    def levelOrderBottomUp(self, root):
+        bfs=deque([])
+        if root==None:
+            return bfs
+        queue= deque([])
+        queue.append(self.root)
+        while len(queue)>0:
+            level_size=len(queue)
+            storecurLevel=[]
+            for i in range(level_size):
+                currNode= queue.popleft()
+                storecurLevel.append(currNode.data)
+                if currNode.left!=None:
+                    queue.append(currNode.left)
+                if currNode.right!=None:
+                    queue.append(currNode.right)
+            bfs.appendleft(storecurLevel)
+        return bfs
+                
     
     def zigzag(self, root):
         bfs=[]

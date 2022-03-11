@@ -1,4 +1,3 @@
-
 def ks01(wt, val, w, n):
     if n==0 or w==0:
         return 0

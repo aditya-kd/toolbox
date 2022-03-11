@@ -5,7 +5,6 @@ def countInversions1(arr):
             if arr[i]>arr[j]:
                 inverts+=1
     return inverts
-
     
 #APPROACH by tweaking mergesort with a temp array
 def countInversion2(arr, n):
@@ -25,7 +24,6 @@ def merge(arr, temp_arr, left, mid, right):
 	k = left	 # Starting index of to be sorted subarray
 	inv_count = 0
 	while i <= mid and j <= right:
-
 
 		if arr[i] <= arr[j]:
 			temp_arr[k] = arr[i]
@@ -51,9 +49,6 @@ def merge(arr, temp_arr, left, mid, right):
 		arr[loop_var] = temp_arr[loop_var]
 
 	return inv_count
-
-
-    
 
 arr=[3,2,1]
 print(countInversions1(arr))

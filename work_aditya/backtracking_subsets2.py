@@ -35,7 +35,7 @@ def backtrack(nums, idx, partSol, allSol):
     backtrack(nums, idx+1, temp_list, allSol)
     
 class Solution:
-    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+    def subsetsWithDup(self, nums):
         nums.sort()
         allSol=[]
         partSol=[]
