@@ -1,5 +1,4 @@
 import math
-from typing import final
 
 def isPalindromic(string, i, j):
     return (string[i:j+1]) == string[i: j+1][::-1]
@@ -28,7 +27,7 @@ def isPal(s, l,r):
         r-=1
     return True
 
-def separate(i, s, partSol, res):
+def separate(i, s, partSol, res):#this is s type of dfs
     if i>=len(s):
         res.append(partSol[::])
         return

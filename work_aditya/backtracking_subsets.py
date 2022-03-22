@@ -1,16 +1,16 @@
 def backtrack( nums, n, partSol, allSols):
         if n==0:
-            allSols.append(partSol)
-            print('all sol', allSols)
+            allSols.append(sum(partSol))
+        #     print('all sol', allSols)
             return
         else:
             idx= n-1
             backtrack(nums, idx, partSol, allSols)
-            print("partsol", partSol)
+        #     print("partsol", partSol)
             temp_list=partSol[::]
             temp_list.append(nums[idx])
             backtrack(nums, idx, temp_list, allSols)
-            print('2nd partsol', partSol)
+        #     print('2nd partsol', partSol)
             # partSol.pop()
             return
 def soln_bk( nums):

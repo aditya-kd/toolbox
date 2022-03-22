@@ -19,7 +19,7 @@ def equalSum(arr, n):
     summ=0
     for i in range(n):
         summ+= arr[i]
-    
+     
     if summ%2!=0:
         return False
     elif summ% 2==0:

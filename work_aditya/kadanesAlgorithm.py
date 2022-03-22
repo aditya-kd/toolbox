@@ -15,6 +15,8 @@ def maxSubArr(arr):
 
 ls=[-2, -3, -4, -1, 2, -1, -3]
 ls=[1,-2,0,3]
+ls=[2,-1,2,3,4,-5]
+ls=[-2,-3,-1,-4,-6]
 print(maxSubArr(ls))
 
 

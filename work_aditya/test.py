@@ -1,6 +1,16 @@
-w=5
-n=4
-ls=[[0]*(w+1)]*(n+1)
-print('ls', ls)
-ls=[[0 for i in range(w+1)] for x in range(n+1)]
-print('second ls', ls)
+from itertools import chain, combinations
+
+def power(iterable) :
+  s = list(iterable)
+  return chain.from_iterable(combinations(s,r) for r in range(len(s)+1))
+
+n = int(input())
+match = input().split(",")
+string = input().split(",")
+
+subsets = list(power(string))
+
+for i,j in enumerate(subsets) :
+  if list(j) == match :
+    print(i+1)
+    break

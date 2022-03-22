@@ -22,6 +22,8 @@ def countAnagrams(text, pattern):
         elif j-i+1 == k:
             if count==0:
                 ans+=1
+                print('index', i,j)
+#we slide the window so we restore the frequency in the map in line 28
             if text[i] in letters:
                     mp[text[i]]+=1
                     if mp[text[i]]==1:
@@ -40,6 +42,8 @@ p='for'
 arr='abhcdfvgcabthilbac'
 p='abc'
 arr='axbxcxdxfxbcaxvcbxabc'
+p='abc'
+arr='cbaebabacd'
 p='abc'
 
 print(countAnagrams(arr, p))
