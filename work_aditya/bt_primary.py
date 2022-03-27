@@ -1,14 +1,27 @@
 from collections import deque
 
-
 class Node:
     def __init__(self, val):
         self.data=val
         self.right=None
         self.left=None
+
 class BinaryTree:
     def __init__(self):
         self.root=None
+
+    def sortedLsToTree(arr):
+        def createTree(arr, lo, hi):
+            if lo>hi: return None
+            mid= (lo+hi)//2
+            data= arr[mid]
+            treeNodeleft= createTree(arr, lo, mid-1)
+            treeNoderight= createTree(arr, mid+1, hi)
+            
+            node= Node(data, treeNodeleft, treeNoderight )
+            return node
+        #gives the node of the tree
+        return createTree(arr, 0, len(arr)-1)
     
     def preorder(self, root):
         if root ==None:
@@ -79,6 +92,7 @@ class BinaryTree:
                     queue.append(current.right)
             bfs.append(current_level)
         return bfs
+        
     def levelOrderBottomUp(self, root):
         bfs=deque([])
         if root==None:

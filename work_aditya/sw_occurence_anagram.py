@@ -43,8 +43,6 @@ arr='abhcdfvgcabthilbac'
 p='abc'
 arr='axbxcxdxfxbcaxvcbxabc'
 p='abc'
-arr='cbaebabacd'
-p='abc'
 
 print(countAnagrams(arr, p))
         
