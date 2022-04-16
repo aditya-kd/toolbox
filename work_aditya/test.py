@@ -1,16 +1,92 @@
-from itertools import chain, combinations
+# # from itertools import chain, combinations
 
-def power(iterable) :
-  s = list(iterable)
-  return chain.from_iterable(combinations(s,r) for r in range(len(s)+1))
+# # def power(iterable) :
+# #   s = list(iterable)
+# #   return chain.from_iterable(combinations(s,r) for r in range(len(s)+1))
 
-n = int(input())
-match = input().split(",")
-string = input().split(",")
+# # n = int(input())
+# # match = input().split(",")
+# # string = input().split(",")
 
-subsets = list(power(string))
+# # subsets = list(power(string))
 
-for i,j in enumerate(subsets) :
-  if list(j) == match :
-    print(i+1)
-    break
+# # for i,j in enumerate(subsets) :
+# #   if list(j) == match :
+# #     print(i+1)
+# #     break
+
+# class Solution:
+#     def threeSumMulti(self, A, target):
+
+#         mod= 10**9+7
+#         count= [0]*101
+#         for x in A:
+#             count[x]+=1
+
+#         ans=0
+
+#         for x in range(101):
+#             z= target-2*x
+#             if x<z and z<=100:
+#                 ans+= count[x]*(count[x]-1)/2*count[z]
+#                 ans%=mod
+
+#         for x in range(101):
+#             if (target-x)%2==0:
+#                 y= (target-x)/2
+#                 if x<y and y<=100:
+#                     ans+= (count[x]*count[y]*(count[y]-1))/2
+#                     ans%= mod
+
+#         if target%3==0:
+#             x=target/3
+#             if 0<= x and x<= 100:
+#                 ans+= count[x]*(count[x]-1)*(count[x]-2)/2
+#                 ans%= mod
+
+#         return ans
+    
+        
+
+def find(v, parent):
+   
+    if v!=parent[v]: parent[v]= find(parent[v], parent)
+    return parent[v]
+    
+
+
+def minCost(points):
+    n= len(points)
+    edges=[[]]
+    for i in range(n-1):
+        for j in range(i+1, n):
+            edges.append([
+                abs(points[i][0]-points[j][0])
+            ,abs(points[i][1] - points[j][1]),
+            i,
+            j])
+    edges.sort()
+    parent=[]*n
+    for i in range(0, n):
+        parent[i]=i
+    result=0
+    edgescount=0
+
+    for e in range(0, len(edges)):
+        group1= find(edges[e][0], parent)
+        group2= find(edges[e][1], parent)
+        if group1 != group2:
+            parent[group1]=group2
+
+            result+= edges[e][0]
+            edgescount+=1
+            if (edgescount) == n-1: 
+                break
+
+    return result
+        
+
+
+
+
+

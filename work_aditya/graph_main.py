@@ -1,7 +1,7 @@
 from collections import deque
 from queue import PriorityQueue
 import sys
-from tkinter import N
+
 
 class Graph:
     
@@ -65,7 +65,7 @@ class Graph:
         return dfs_ans   
     #CYCLE CHECKING/DETECTION
     #USING BFS UNDIRECTED
-    def checkCycle(self, adj, s, vis, parent):
+    def checkCycle(self, adj, s, vis, par):
         q=deque()
         q.add((s,-1))
         vis[s]=True

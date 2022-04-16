@@ -18,7 +18,6 @@ def jesse_cookies(arr,k):
         heappush(min_heap, operate)
 
     return trial
-    
 
 arr=[67,1,2,3,9,10]
 arr=[2,7,3,6,4,6]

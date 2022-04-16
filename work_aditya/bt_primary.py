@@ -1,4 +1,5 @@
 from collections import deque
+from math import ldexp
 
 class Node:
     def __init__(self, val):
@@ -22,6 +23,19 @@ class BinaryTree:
             return node
         #gives the node of the tree
         return createTree(arr, 0, len(arr)-1)
+    
+    def display(self, node):
+        if node== None:
+            return 
+        res=""
+        res+= '.' if node.left==None else str(node.left.data)
+        res+= '<-'+str(node.data)+'->'
+        res+= '.' if node.right==None else str(node.right.data)
+        print(res)
+        self.display(node.left)
+        self.display(node.right)
+
+
     
     def preorder(self, root):
         if root ==None:
@@ -73,6 +87,68 @@ class BinaryTree:
         if root.left!=None and root.right!=None:
             ans=1
         return ans+self.numNonLeafNodes(root.left)+self.numNonLeafNodes(root.right)
+
+    def height(self, root):
+        if root== None:
+            return -1
+
+        lefth= self.height(root.left)
+        right= self.height(root.right)
+        total_height= max(lefth, right)+1
+        return total_height
+    
+    def isBalanced(self, root):
+        if root== None: 
+            return True
+
+        lh= self.height(root.left)
+        rh= self.height(root.right)
+        if (abs(lh-rh)<= 1) and self.isBalanced(root.left) is True and self.isBalanced(root.right) is True: 
+            return True
+        
+        return False
+
+    def maxDepth(self, root):
+        if root== None:
+            return -1
+        else:
+            left_dept= self.maxDepth(root.left)
+            right_dept= self.maxDepth(root.right)
+            if left_dept> right_dept:
+                return left_dept+1
+            else:
+                return right_dept+1
+
+    def minDepth(self, root):
+        mind=0
+        if root==None:
+            return mind
+        
+        queue=deque([])
+        queue.append(root)
+        while len(queue)>0:
+            mind+=1
+            level_size=len(queue)
+            for i in range(level_size):
+                current = queue.popleft()
+                
+                if current.left == None and current.right ==None:
+                    return mind
+                
+                if current.left != None:
+                    queue.append(current.left)
+                if current.right !=None:
+                    queue.append(current.right)
+        return mind
+    
+    def hasPathSum(self, root, targetSum):
+        if root==None:
+            return False
+        
+        if root.data==targetSum and root.left==None and root.right==None:
+            return True
+        return self.hasPathSum(root.left, targetSum-root.data) or self.hasPathSum(root.right, targetSum-root.left)
+
 
     def levelOrder(self, root):#uses bfs (breadth) not depth
         bfs = []
@@ -218,3 +294,4 @@ key=4
 print('Level order successor of ',key,': ', tree.levelOrderSuccessor(tree.root, key).data)
 print('Minimum Depth: ', tree.minimumDepth(tree.root))
 print("Right Veiw: ",tree.rightView(tree.root))
+tree.display(tree.root)
