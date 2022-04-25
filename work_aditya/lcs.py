@@ -38,4 +38,4 @@ def lcs(s1, s2, n, m):
 
 s1='Aditya'
 s2='Adya'
-lcs2(s1, s2, len(s1),len(s2), [])
+lcs(s1, s2, len(s1),len(s2))

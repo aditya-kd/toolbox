@@ -1,4 +1,6 @@
 from collections import deque
+from heapq import heappop, heappush
+import math
 from queue import PriorityQueue
 import sys
 
@@ -301,7 +303,30 @@ class Graph:
                 if dist[node[0]] + it[1] < dist[it[0]]:
                     dist[it[0]] = dist[node[0]] + it[1]
                     pq.put((it[0], dist[it[0]]))
+                    
         return dist
+    #using HEAP, NOT PRIORITY QUEUE
+    # def dijkstra(self, src, adj, vertices):
+    #     distance = [math.inf]*(vertices+1)
+    #     visited= [False]*(vertices+1)
+
+    #     min_heap=[]
+    #     heappush(min_heap, (0,src))
+    #     distance[src] =0
+
+    #     while min_heap:
+    #         curr_distance, curr_node= heappop(min_heap)
+
+    #         if visited[curr_node] is not True:
+    #             visited[curr_node] =True
+    #             for vertex in range(1, vertices+1):
+    #                 if we
+
+            
+            
+
+        
+
     #CONNECTED COMPONENTS
     def countComponents(self, vertices, edges):
         parent= [i for i in range(vertices)]

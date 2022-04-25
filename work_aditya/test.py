@@ -48,43 +48,66 @@
     
         
 
-def find(v, parent):
+# def find(v, parent):
    
-    if v!=parent[v]: parent[v]= find(parent[v], parent)
-    return parent[v]
+#     if v!=parent[v]: parent[v]= find(parent[v], parent)
+#     return parent[v]
     
 
 
-def minCost(points):
-    n= len(points)
-    edges=[[]]
-    for i in range(n-1):
-        for j in range(i+1, n):
-            edges.append([
-                abs(points[i][0]-points[j][0])
-            ,abs(points[i][1] - points[j][1]),
-            i,
-            j])
-    edges.sort()
-    parent=[]*n
-    for i in range(0, n):
-        parent[i]=i
-    result=0
-    edgescount=0
+# def minCost(points):
+#     n= len(points)
+#     edges=[[]]
+#     for i in range(n-1):
+#         for j in range(i+1, n):
+#             edges.append([
+#                 abs(points[i][0]-points[j][0])
+#             ,abs(points[i][1] - points[j][1]),
+#             i,
+#             j])
+#     edges.sort()
+#     parent=[]*n
+#     for i in range(0, n):
+#         parent[i]=i
+#     result=0
+#     edgescount=0
 
-    for e in range(0, len(edges)):
-        group1= find(edges[e][0], parent)
-        group2= find(edges[e][1], parent)
-        if group1 != group2:
-            parent[group1]=group2
+#     for e in range(0, len(edges)):
+#         group1= find(edges[e][0], parent)
+#         group2= find(edges[e][1], parent)
+#         if group1 != group2:
+#             parent[group1]=group2
 
-            result+= edges[e][0]
-            edgescount+=1
-            if (edgescount) == n-1: 
-                break
+#             result+= edges[e][0]
+#             edgescount+=1
+#             if (edgescount) == n-1: 
+#                 break
 
-    return result
+#     return result
         
+
+# from heapq import *
+# from traceback import print_tb
+# min_heap=[]
+# li=[('a', 2),('e',3),('f',4),('b',1)]
+# # li=[(2,'a'),(3,'e'),(1,'b'),(4,'f')]
+# for item in li:
+#     heappush(min_heap, item)
+# while len(min_heap)>0:
+#     print(heappop(min_heap))
+
+from queue import PriorityQueue
+pq= PriorityQueue()
+# li=[('a', 2),('e',3),('f',4),('b',1)]
+li=[(2,'a'),(3,'e'),(1,'b'),(4,'f')]
+for item in li:
+    pq.put(item)
+
+while pq.empty()==False:
+    print(pq.get())
+
+
+
 
 
 
