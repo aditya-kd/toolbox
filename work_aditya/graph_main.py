@@ -25,6 +25,7 @@ class Graph:
             d[edge[1]].append(edge[0])
         return d
 
+
     def display(self):
         for vertex in range(len(self.adjacency_list)):
             print(vertex,self.adjacency_list[vertex])

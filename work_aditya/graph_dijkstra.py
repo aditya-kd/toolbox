@@ -2,7 +2,7 @@ from heapq import *
 vertices= int(input("Vertices: ?"))
 e= int(input("Edges: ?"))
 edges=[]
-adjlist=[[]for i in range(vertices)]
+# adjlist=[[]for i in range(vertices)]
 #creates edge list with weight
 for i in range(e):
     src, dest, wt= tuple(map(int, input().split()))
