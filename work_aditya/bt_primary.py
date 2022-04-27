@@ -1,28 +1,21 @@
 from collections import deque
-from math import ldexp
+
+##TODO
+## inorder successor
+## postorder successor
+## other algos
 
 class Node:
-    def __init__(self, val):
+    def __init__(self, val, left=None, right=None):
         self.data=val
-        self.right=None
-        self.left=None
+        self.right=right
+        self.left=left
 
 class BinaryTree:
-    def __init__(self):
-        self.root=None
+    def __init__(self, node):
+        self.root=node
 
-    def sortedLsToTree(arr):
-        def createTree(arr, lo, hi):
-            if lo>hi: return None
-            mid= (lo+hi)//2
-            data= arr[mid]
-            treeNodeleft= createTree(arr, lo, mid-1)
-            treeNoderight= createTree(arr, mid+1, hi)
-            
-            node= Node(data, treeNodeleft, treeNoderight )
-            return node
-        #gives the node of the tree
-        return createTree(arr, 0, len(arr)-1)
+    
     
     def display(self, node):
         if node== None:
@@ -270,14 +263,48 @@ class BinaryTree:
                     queue.append(current.right)
 
         return result
+    
+    def inorderSuccessor(self, root, p):
+        def solve(root, p, successor):
+            if root==None : return successor
+            if root.data > p.data and (successor == None or root.data < successor.data):
+                successor= root
+            if p.data >= root.data:
+                return solve(root.right, p,successor)
+            elif root.left == None:
+                return root
+            else:
+                return solve(root.left, p, successor)
 
-tree= BinaryTree()
-tree.root= Node(1)
-tree.root.left=Node(2)
-tree.root.right=Node(3)
-tree.root.left.left=Node(4)
-tree.root.right.right=Node(5)
-tree.root.left.right=Node(6)
+        successor= None
+        return solve(root, p, successor)
+
+
+def sortedLsToTree(arr):
+        def createTree(arr, lo, hi):
+            if lo>hi: return None
+            mid= (lo+hi)//2
+            data= arr[mid]
+            treeNodeleft= createTree(arr, lo, mid-1)
+            treeNoderight= createTree(arr, mid+1, hi)
+            
+            node= Node(data, treeNodeleft, treeNoderight )
+            return node
+        #gives the node of the tree
+        return createTree(arr, 0, len(arr)-1)
+    
+
+
+# tree.root= Node(1)
+# tree.root.left=Node(2)
+# tree.root.right=Node(3)
+# tree.root.left.left=Node(4)
+# tree.root.right.right=Node(5)
+# tree.root.left.right=Node(6)
+arr=[1,2,3,4,5,6,7,8,9,10]
+node= sortedLsToTree(arr)
+tree= BinaryTree(node)
+
 print('\nPreorder')
 tree.preorder(tree.root)
 print('\nInorder')
