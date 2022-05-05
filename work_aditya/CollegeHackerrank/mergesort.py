@@ -1,4 +1,3 @@
-
 def merge(arr, l, m, r):
 	n1 = m - l + 1
 	n2 = r - m
