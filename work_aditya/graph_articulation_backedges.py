@@ -11,7 +11,7 @@ def dfs(node, parent, vis, dis, low, graph, ap, timer):
             dfs(nbr, node, vis, dis, low, graph, ap, timer)
             low[node] = min(low[node], low[nbr])
 
-            if low[nbr] >= dis[node]:
+            if low[nbr] >= dis[node] and parent!=-1:
                 ap.add(node)
             child+=1
         else:
@@ -21,9 +21,7 @@ def dfs(node, parent, vis, dis, low, graph, ap, timer):
     if child >= 2 and parent == -1:
         ap.add(node)
     
-
-
-
+    
 def findArtiPoints(edges, vertices):
     visited = [False]*vertices
     discovery_time=[0] *vertices
@@ -50,4 +48,4 @@ if __name__ =='__main__':
     edges=[[0,1],[0,2],[1,2],[1,3],[3,4],[3,6],[4,5],[5,6]]
     vertices =7
     ans = findArtiPoints(edges, vertices)
-    print(ans)
+    print('Articulation Points:',ans)

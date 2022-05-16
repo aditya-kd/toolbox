@@ -2,7 +2,12 @@ from heapq import *
 import heapq
 small=[]
 large=[]
-
+#we keep two heaps one for elements smaller than median
+#and one for elements greater than median
+#now the top elements in both the heaps are the 
+#nearest to the median that exists, thus we can simply 
+#find the median by dividing them by two and return the 
+#value in float
 def addNum(num):
     heapq.heappush(small, -1*num)
 
@@ -10,7 +15,7 @@ def addNum(num):
         val = -1*heapq.heappop(small)
         heapq.heappush(large, val)
     
-    if len(small) > len(large) +1:
+    if len(small) > len(large) +1: 
         val= -1*heapq.heappop(small)
         heapq.heappush(large, val)
     if len(large) > len(small)+1:

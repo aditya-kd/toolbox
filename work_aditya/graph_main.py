@@ -4,7 +4,6 @@ import math
 from queue import PriorityQueue
 import sys
 
-
 class Graph:
     
     def __init__(self, vertices):
@@ -174,7 +173,7 @@ class Graph:
                     return False
 
         return True
-#Bipartit DFS
+    #Bipartit DFS
     def dfscheck(self, node, vis, adj, dfsans):
         dfsans.append(node)
         vis[node]=True
