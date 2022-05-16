@@ -8,6 +8,10 @@ large=[]
 #nearest to the median that exists, thus we can simply 
 #find the median by dividing them by two and return the 
 #value in float
+
+#after running the program both the heaps will have 
+#numbers greater and less than the last median, 6.0 in
+#this case
 def addNum(num):
     heapq.heappush(small, -1*num)
 
