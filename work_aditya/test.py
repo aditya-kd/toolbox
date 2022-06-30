@@ -96,15 +96,44 @@
 # while len(min_heap)>0:
 #     print(heappop(min_heap))
 
-from queue import PriorityQueue
-pq= PriorityQueue()
-# li=[('a', 2),('e',3),('f',4),('b',1)]
-li=[(2,'a'),(3,'e'),(1,'b'),(4,'f')]
-for item in li:
-    pq.put(item)
+# from queue import PriorityQueue
+# pq= PriorityQueue()
+# # li=[('a', 2),('e',3),('f',4),('b',1)]
+# li=[(2,'a'),(3,'e'),(1,'b'),(4,'f')]
+# for item in li:
+#     pq.put(item)
 
-while pq.empty()==False:
-    print(pq.get())
+# while pq.empty()==False:
+#     print(pq.get())
+# print('hello world')
+from heapq import *
+def kthfrequent(arr, k):
+    mp={}
+    for i in arr:
+        mp[i]= mp.get(i,0)+1
+
+    print('frequency', mp)
+    #create heap
+    max_heap=[]
+    for item in mp.items():
+        fr= item[1]
+        ele= item[0]
+        # print(ele, fr)
+        heappush(max_heap, (-fr, ele))
+    
+    print(max_heap)
+    #pop k-1 times to reach kth frequent
+    for i in range(0,k-1):
+        heappop(max_heap)
+
+    print('Kth Frequent', max_heap[0][1])
+
+
+
+k=2
+arr=[2,2,1,1,1,3,3,4,1,1,1,1,2,2,2,3,3,3,2]
+kthfrequent(arr, k)
+
 
 
 

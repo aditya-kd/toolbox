@@ -7,6 +7,7 @@ def subsetSum(wt, w):
                 t[i][j]=False
             if j==0:
                 t[i][j]=True
+                
     for i in range(1, n+1):
         for j in range(1, w+1):
             if wt[i-1]<=j:
