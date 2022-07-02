@@ -14,11 +14,19 @@ def partition(array, low, high):
 def quicksort(arr,low, high):
   if low<high:
     p = partition(arr, low, high)
+    print('Pivot',p,'Pass',arr)
     quicksort(arr, low, p-1)
+    print('Pivot',p,'Pass',arr)
     quicksort(arr, p+1, high)
+    print('Pivot',p,'Pass',arr)
 
 
 arr=[78,-90,45,23,34,11,12]
 n= len(arr)
 quicksort(arr, 0, n-1)
 print('Quicksort output',arr)
+arr.reverse()
+
+print('New QuickSort')
+quicksort(arr,0,n-1)
+print(arr)

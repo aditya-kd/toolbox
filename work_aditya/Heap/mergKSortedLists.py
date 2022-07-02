@@ -1,5 +1,5 @@
 #using heap
-from queue import PriorityQueue
+# from queue import PriorityQueue
 import heapq
 def mergeKLists(self, lists):
         head = point = ListNode(0)

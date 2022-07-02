@@ -106,35 +106,144 @@
 # while pq.empty()==False:
 #     print(pq.get())
 # print('hello world')
-from heapq import *
-def kthfrequent(arr, k):
-    mp={}
-    for i in arr:
-        mp[i]= mp.get(i,0)+1
+# from heapq import *
+# def kthfrequent(arr, k):
+#     mp={}
+#     for i in arr:
+#         mp[i]= mp.get(i,0)+1
 
-    print('frequency', mp)
-    #create heap
-    max_heap=[]
-    for item in mp.items():
-        fr= item[1]
-        ele= item[0]
-        # print(ele, fr)
-        heappush(max_heap, (-fr, ele))
+#     print('frequency', mp)
+#     #create heap
+#     max_heap=[]
+#     for item in mp.items():
+#         fr= item[1]
+#         ele= item[0]
+#         # print(ele, fr)
+#         heappush(max_heap, (-fr, ele))
     
-    print(max_heap)
-    #pop k-1 times to reach kth frequent
-    for i in range(0,k-1):
-        heappop(max_heap)
+#     print(max_heap)
+#     #pop k-1 times to reach kth frequent
+#     for i in range(0,k-1):
+#         heappop(max_heap)
 
-    print('Kth Frequent', max_heap[0][1])
-
-
-
-k=2
-arr=[2,2,1,1,1,3,3,4,1,1,1,1,2,2,2,3,3,3,2]
-kthfrequent(arr, k)
+#     print('Kth Frequent', max_heap[0][1])
 
 
+
+# k=2
+# arr=[2,2,1,1,1,3,3,4,1,1,1,1,2,2,2,3,3,3,2]
+# kthfrequent(arr, k)
+# def merge(arr, l, m, r):
+#     n1= m-l+1
+#     n2= r-m
+#     left=[0]*n1
+#     right=[0]*n2
+#     for i in range(n1):
+#         left[i]=arr[l+i]
+#     for j in range(n2):
+#         right[j] = arr[m+1+j]
+#     i=0
+#     j=0
+#     k=l
+#     while i<n1 and j< n2:
+#         if left[i]<=right[j]:
+#             arr[k]=left[i]
+#             i+=1
+#         else:
+#             arr[k]=right[j]
+#             j+=1
+#         k+=1
+#     while j< n2:
+#         arr[k]= right[j]
+#         j+=1
+#         k+=1
+#     while i<n1:
+#         arr[k]= left[i]
+#         i+=1
+#         k+=1
+
+# def mergeSort(arr, l, r):
+# 	if l < r:
+
+		
+# 		m = l+(r-l)//2
+
+# 		mergeSort(arr, l, m)
+# 		mergeSort(arr, m+1, r)
+# 		merge(arr, l, m, r)
+
+# arr=[10,8,9,6,7,5,4,3,2,1]
+# n=len(arr)
+# mergeSort(arr, 0, n-1)
+# print(arr)
+# def partition(arr, l, r):
+#     pivot= arr[r]
+#     i=l-1
+#     for j in range(l, r):
+#         if arr[j] <= pivot:
+#             i+=1
+#             (arr[i],arr[j]) = (arr[j],arr[i])
+#     arr[i+1], arr[r] = arr[r], arr[i+1]
+
+#     return i+1
+# def quicksort(arr, l, r):
+#     if l<r :
+#         p= partition(arr,l,r)
+#         quicksort(arr, l, p-1)
+#         quicksort(arr, p+1, r)
+    
+# arr=[78,-90,45,23,34,11,12]
+# n=len(arr)
+# quicksort(arr, 0, n-1)
+# print("Quicksort output", arr)
+# def partition(arr, l, r):
+#     pivot= arr[r]
+#     i = l-1
+#     for j in range(l, r):
+#         if arr[j]<=pivot:
+#             i+=1
+#             arr[i],arr[j]=arr[j],arr[i]
+
+#     arr[i+1],arr[r]=arr[r],arr[i+1]
+#     return i+1
+
+# def quicksort(arr, l, r):
+#     if l<r:
+#         p= partition(arr,l,r)
+#         quicksort(arr, l, p-1)
+#         quicksort(arr, p+1,r)
+# def partition(arr, l, r):
+#     pivot= arr[r]
+#     i=l-1
+#     for j in range(l,r):
+#         if arr[j]<= pivot:
+#             i+=1
+#             arr[i],arr[j]=arr[j],arr[i]
+#     arr[i+1],arr[r]=arr[r],arr[i+1] 
+#     return i+1
+
+# def quickselect(arr, l, r,k):
+#     idx= partition(arr, l, r)
+#     if idx-l == k-1:
+#         return arr[idx]
+#     elif idx-l > k-1:
+#         return quickselect(arr,l,idx-1,k)
+#     return quickselect(arr, idx+1, r,k)
+# arr=[78, -90, 45, 23, 34, 11, 12]
+# n=len(arr)
+# print(quickselect(arr,0,n-1, 3))
+# print(quickselect(arr,0,n-1, 1))
+# print(quickselect(arr,0,n-1, 2))
+# from heapq import *
+# arr=[25,10,23,3,4,12,11]
+# max_heap=[]
+# for i in arr:
+#     heappush(max_heap, -i)
+
+# heappop(max_heap)
+# heappop(max_heap)
+
+# print(max_heap)
 
 
 

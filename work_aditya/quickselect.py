@@ -1,22 +1,19 @@
-def partition(array, low, high):
-  pivot = array[high]
-  i = low - 1
-  for j in range(low, high):
-    if array[j] <= pivot:
-
-      i = i + 1
-      (array[i], array[j]) = (array[j], array[i])
-
-  (array[i + 1], array[high]) = (array[high], array[i + 1])
-
-  return i + 1
+def partition(arr, l, r):
+  pivot= arr[r]
+  i= l-1
+  for j in range(l, r):
+    if arr[j] <= pivot:
+      i+=1
+      arr[i],arr[j]=arr[j],arr[i]
+  arr[i+1],arr[r] = arr[r],arr[i+1]
+  return i+1
 
 def quickselect(arr, left, right, k):
 
     index= partition(arr, left, right)
     if (index-left ==k-1):
         return arr[index]
-    if( index -left> k-1):
+    if( index - left> k-1):
         return quickselect(arr, left, index-1, k)
     return quickselect(arr, index+1, right, k-index+left-1)
 

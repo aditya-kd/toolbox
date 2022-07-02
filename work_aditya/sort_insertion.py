@@ -8,6 +8,7 @@ def insertionsort(arr, n):
             j = j-1
 
         arr[j+1]= temp
+        print('Pass',i+1, arr)
     print(arr)
 
 
