@@ -18,10 +18,19 @@ def subsetSum(wt, w, n):
     return (t[n][w])
 
 
+def subsetSum2(arr, n, wt):
+    if wt == 0:
+        return True
+    if n==0:
+        return False
+    if arr[n-1] > wt:
+        return subsetSum2(arr, n-1, wt)
+    return subsetSum2(arr,n-1,wt) or subsetSum2(arr, n-1, wt-arr[n-1])
 
 wt=[2,3,8]
 w=11
-wt=[3,34,4,12,5,2]
-w=30
+# wt=[3,34,4,12,5,2]
+# w=30
 
 print(subsetSum(wt, w, len(wt)))
+print(subsetSum2(wt, len(wt), w))

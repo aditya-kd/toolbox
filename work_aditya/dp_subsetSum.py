@@ -9,9 +9,16 @@ def subsetSum(arr, n ,summ):
             else:
                 dp[i][j] = dp[i-1][j] or dp[i-1][j-arr[i-1]]
     return dp[n][summ]
+def subsetSumRecur(arr, n, k):
+    if k==0: return True
+    if k<0 or n==0: return False
+    include= subsetSumRecur(arr, n-1, k-arr[-1])
+    execlude = subsetSumRecur(arr, n-1, k)
+    return include or execlude
 
 arr=[3,4,6,2]
 n=4
 summ=9
 ans=subsetSum(arr, n, summ)
 print(ans)
+print(subsetSumRecur(arr, n, summ))

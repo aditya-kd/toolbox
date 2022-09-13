@@ -26,7 +26,7 @@ def subsequences2(str, n, curr="", index=-1):
     return 
 
 output=""
-instr='moomso'
+instr='111'
 slen=len(instr)
 
 subsequences1(instr,output)

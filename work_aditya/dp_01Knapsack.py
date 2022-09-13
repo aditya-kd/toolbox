@@ -31,10 +31,10 @@ w = 50
     
 # wt=[1,3,4,5]
 # val=[1,4,5,2]
-# val=[1,2,3]
+# val=[1,2,3]st
 # wt=[4,5,1]
 # w=4
 # val=[60,100,120]
 # wt=[10,20,30]
 # w=50
-print(ks01(wt, val, w, len(wt)))
+print(ks(wt, val, w, len(wt)))

@@ -58,7 +58,7 @@ def counterGame(n):
     # Write your code here
     r="Richard"
     s='Louise'
-    chance=False
+    chance = False
     while n!=1:
             if xyz(n):
                 n=n//2

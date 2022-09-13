@@ -279,6 +279,19 @@ class BinaryTree:
         successor= None
         return solve(root, p, successor)
 
+    
+    def lca(self, root, n1, n2):
+        while root!=None:
+            if root.data > n1 and root.data > n2:
+                root = root.left
+
+            elif root.data< n1 and root.data<n2:
+                root = root.right
+            
+            else:
+                break
+        return root
+
 
 def sortedLsToTree(arr):
         def createTree(arr, lo, hi):
@@ -292,6 +305,7 @@ def sortedLsToTree(arr):
             return node
         #gives the node of the tree
         return createTree(arr, 0, len(arr)-1)
+
     
 
 

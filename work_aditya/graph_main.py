@@ -65,11 +65,19 @@ class Graph:
                 self.dfs_recursive(vertex, visited, dfs_ans)
 
         return dfs_ans   
+    def dfsUtil(self, v, visited):
+        visited.add(v)
+        for nbr in self.adjacency_list[v]:
+            if nbr not in visited:
+                self.dfsUtil(nbr, visited)
+    def dfsNormal(self,source):
+        visited=set()
+        self.dfsUtil(source, visited)
     #CYCLE CHECKING/DETECTION
     #USING BFS UNDIRECTED
-    def checkCycle(self, adj, s, vis, par):
+    def checkCycle(self, adj, s, vis, parent):
         q=deque()
-        q.add((s,-1))
+        q.add((s,parent))
         vis[s]=True
         while len(q)>0:
             node= q[0][0]
@@ -88,7 +96,7 @@ class Graph:
         parent=[-1]*vertices
         for i in range(0, vertices):
             if visited[i]==False:
-                if self.checkCycle(adjlist, i, visited, parent):
+                if self.checkCycle(adjlist, i, visited, parent[i]):
                     return True
         return False
     #Check Cycle DFS UNDIRECTED GRAPH
@@ -128,7 +136,9 @@ class Graph:
                 if self.checkDFS(i, adj, vis, dfsvis)==True:
                     return True
         return False
+
     #CHECK CYCLE BFS(KAHN'S ALGORITHM) DIRECTED GRAPH
+    #TOPOLOGICAL SORT for DAG
     #if there is a cycle topo sort won't be successful.
     def isCyclic(vertices, adj):
         q=deque()
@@ -150,7 +160,57 @@ class Graph:
         if cnt==vertices:
             return False
         return True
-        
+
+        #TOPOLOGICAL SORTING
+        #DFS
+    def findTopoSort(self, node, vis, adj, st):
+        vis[node] = True
+        for i in adj[node]:
+            if vis[i]==False:
+                self.findTopoSort(i, vis, adj,st)
+        st.append(node)
+
+    def topoSort(self, vertices, adj):
+        st=[]
+        vis=[False]*vertices
+        for i in range(0, vertices):
+            if vis[i] == False:
+                self.findTopoSort(self, i, vis, adj, st)
+
+        topo=[]*vertices
+        ind =0
+        while len(st)>0:
+            topo[ind] = st.pop()
+            ind+=1
+        return topo
+    
+    
+    #TOPOLOGICAL SORTING BFS(KAHN's ALGORITHM)
+    def topoSortBFS(self, vertices, adj):
+        topo=[]*vertices
+        indegree=[]*vertices
+        for i in range(0, vertices):
+            for i in adj[i]:
+                indegree[i]+=1
+        q= deque()
+        for i in range(0, vertices):
+            if indegree[i]==0:
+                q.append(i)
+        cnt=0
+        ind=0
+        while len(q)>0:
+            node= q.popleft()
+            topo[ind]=node
+            ind+=1
+
+            for i in adj[node]:
+                indegree[i]-=1
+                if indegree[i]==0:
+                    q.append(i)
+
+        return topo
+
+
     #BIPARTITE BFS
     def bfCheck(self, adj, node, color):
         q=deque()
@@ -188,54 +248,8 @@ class Graph:
             if vis[i]==False:
                 self.dfscheck(i, vis, adj, dfsans)
         return dfsans
-        #TOPOLOGICAL SORTING
-        #DFS
-    def findTopoSort(self, node, vis, adj, st):
-        vis[node]=True
-        for i in adj[node]:
-            if vis[i]==False:
-                self.findTopoSort(i, vis, adj,st)
-        st.append(node)
-    def topoSort(self, vertices, adj):
-        st=[]
-        vis=[False]*vertices
-        for i in range(0, vertices):
-            if vis[i] == False:
-                self.findTopoSort(self, i, vis, adj, st)
-
-        topo=[]*vertices
-        ind =0
-        while len(st)>0:
-            topo[ind] = st.pop()
-            ind+=1
-        return topo
     
-    #TOPOLOGICAL SORTING BFS(KAHN's ALGORITHM)
-    def topoSortBFS(self, vertices, adj):
-        topo=[]*vertices
-        indegree=[]*vertices
-        for i in range(0, vertices):
-            for i in adj[i]:
-                indegree[i]+=1
-        q= deque()
-        for i in range(0, vertices):
-            if indegree[i]==0:
-                q.append(i)
-        cnt=0
-        ind=0
-        while len(q)>0:
-            node= q.popleft()
-            topo[ind]=node
-            ind+=1
-
-            for i in adj[node]:
-                indegree[i]-=1
-                if indegree[i]==0:
-                    q.append(i)
-
-        return topo
-
-
+    
     def findNoofPaths(self, src, dest, graph):
         if src==dest:
             return 1
@@ -346,8 +360,11 @@ class Graph:
 
             if rank[p2] > rank[p1]:
                 parent[p1] = p2
-                rank[p2]+= rank[p2]
-            return 1
+                rank[p2] += rank[p1]
+            else:
+                parent[p2] = p1
+                rank[p1] += rank[p2]
+                
         res = vertices
         for n1, n2 in edges:
             res -= union(n1, n2)

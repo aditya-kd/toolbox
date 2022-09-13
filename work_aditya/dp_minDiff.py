@@ -1,7 +1,7 @@
 import sys
 
 def subsetSum(arr, n ,summ):
-    dp= [[False]*(summ+1) for i in range(n+1)]
+    dp= [[False]*(abs(summ)+1) for i in range(n+1)]
     for i in range(n+1):
         dp[i][0]=True
     for i in range(1, n+1):
@@ -26,6 +26,8 @@ def subsetSum(arr, n ,summ):
 
 
 arr=[1,2,7]
+arr=[3,9,7,3]
+arr=[2,-1,0,4,-2,-9]
 n=len(arr)
 ss=sum(arr)
 subsetSum(arr, n, ss)

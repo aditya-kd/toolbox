@@ -5,7 +5,7 @@ def lilysHomework(A):
     d1,d2 = {},{}
     C = A[:]
     S = sorted(A)
-    for i,val in enumerate(A):
+    for i,val in enumerate(A): #index, value
         d1[val] = i
         d2[val] = i
     for i in range(len(C)):
