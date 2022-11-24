@@ -190,13 +190,12 @@ class Graph:
         topo=[]*vertices
         indegree=[]*vertices
         for i in range(0, vertices):
-            for i in adj[i]:
-                indegree[i]+=1
+            for t in adj[i]:
+                indegree[t]+=1
         q= deque()
         for i in range(0, vertices):
             if indegree[i]==0:
                 q.append(i)
-        cnt=0
         ind=0
         while len(q)>0:
             node= q.popleft()

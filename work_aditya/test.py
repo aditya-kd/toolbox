@@ -164,10 +164,7 @@
 
 # def mergeSort(arr, l, r):
 # 	if l < r:
-
-		
 # 		m = l+(r-l)//2
-
 # 		mergeSort(arr, l, m)
 # 		mergeSort(arr, m+1, r)
 # 		merge(arr, l, m, r)
@@ -178,7 +175,7 @@
 # print(arr)
 # def partition(arr, l, r):
 #     pivot= arr[r]
-#     i=l-1
+#     i = l - 1
 #     for j in range(l, r):
 #         if arr[j] <= pivot:
 #             i+=1
@@ -839,9 +836,205 @@
 # # This code is contributed by mohit kumar 29
 
 
-def solve(arr, k):
-	for i in range(0, k-1):
-		print(arr[i])
+# def solve(arr, k):
+# 	for i in range(0, k-1):
+# 		print(arr[i])
+
+# This is a happy house123
+# 0123456789...
+
+
+# house 
+# esuoh
+# house
+# def reverseSentence(sentence):
+
+#     sentence = sentence+" "
+#     stack = []
+#     word = ''
+#     for i in range(0, len(sentence)):
+
+#         letter = sentence[i]
+#         # letter is whitespace
+#         if letter == ' ':
+#             # new word
+#             stack.append(word)
+#             word = ''
+#         else:
+#             word = word + letter
+        
+#     while len(stack) != 0:
+#         word = stack.pop()
+#         print(word, end=' ')
+    
+#     print()
+        
+
+# inputstr = input()
+# reverseSentence(inputstr)
+print('Enter vertices and edges')
+vertices = 6
+edges = 6
+print('Edge: ', edges, 'Vertices: ', vertices)
+# vertices = int(input())
+# edges = int(input())
+edgelist=[]
+edgelist = [[1,4],[1,2],[1,3],[4,3],[3,5]]
+edgelist = [[1,2], [1,4], [1,3], [2,6], [4,5], [5,3], [6,5]]
+print("Edge List")
+adjList = [[] for i in range(vertices+1)]
+
+#accepting edges
+# for i in range(edges):
+#     u,v = map(int, input().split())
+#     edgelist.append([u,v])
+
+def addEdge(source, destination):
+    #directed 
+    adjList[source].append(destination)
+    #undirected
+    adjList[destination].append(source)
+
+
+def createGraph(vertices, edges, edgelist):
+    for e in edgelist:
+        u = e[0]
+        v = e[1]
+        addEdge(u,v)
+
+def displayGraph():
+    for vtx in range(len(adjList)):
+        print(vtx, adjList[vtx])
+
+from collections import deque
+def bfs(source):
+    bfs = []
+    queue = deque()
+    visited = [False] * (vertices+1)
+    #process source
+    queue.append(source)
+    visited[source] = True
+
+    while len(queue)!=0:
+        currNode = queue.popleft()
+        bfs.append(currNode)
+
+        for nbr in adjList[currNode]:
+            if visited[nbr] == False:
+                queue.append(nbr)
+                visited[nbr] = True
+
+    return bfs
+
+def dfs_recurse(node, visited, dfs):
+    dfs.append(node)
+    visited[node] = True
+    for nbr in adjList[node]:
+        if visited[nbr] == False:
+            dfs_recurse(nbr, visited, dfs)
+
+def dfs(source):
+    dfs = []
+    visited = [False] *(vertices+1)
+
+    dfs.append(source)
+    visited[source] = True
+
+    for nbr in adjList[source]:
+        if visited[nbr] == False:
+            dfs_recurse(nbr, visited, dfs)
+    return dfs
+
+#only for dag
+# toposort using DFS
+def topoHelper(source, visited, stack):
+    visited[source] = True
+    for node in adjList[source]:
+        if visited[node] == False:
+            topoHelper(node, visited, stack)
+
+    stack.append(source)
+    return stack[-1::-1]
+def topoSort(source):
+    visited = [False]*(vertices+1)
+    stack = []
+    return topoHelper(source, visited, stack)
+
+# Topo Sort using BFS
+# uses indegree
+def topoSortBFS():
+    topo = []
+    indegree = [0]*(vertices+1)
+    for t in range(0,vertices+1):
+        for i in adjList[t]:
+            indegree[i] += 1
+
+    print("Indegree:",indegree)
+    queue = deque()
+    for vtx in range(0,vertices+1):
+        if indegree[vtx] == 0:
+            queue.append(vtx)
+    print("queue", queue)
+    ind = 0
+    while len(queue)>0:
+        node = queue.popleft()
+        print("node popped: ", node)
+        topo.append(node)
+
+        for nbr in adjList[node]:
+            indegree[nbr] =- 1
+            if indegree[nbr] == 0:
+                queue.append(nbr)
+
+    return topo
+      
+
+def main():
+    createGraph(vertices, edges, edgelist)
+    displayGraph()
+    print("Performing BFS")
+    source = 1
+    print(bfs(source))
+    print(dfs(source))
+    print(topoSort(source))
+    print(topoSortBFS())
+
+
+main()
+
+
+    
+
+
+
+
+    
+
+
+        
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
+
+
+
+
 		
 
 
