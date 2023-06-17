@@ -1,5 +1,3 @@
- 
-
 // import java.util.Scanner;
 // //this file holds all the operations on trees
 
@@ -8,7 +6,7 @@
      
 //     public static void main(String[] args) {
 //         //int arr[]={12,25,37,50,62,75,87};
-//         print("Do you want to input in Level Order OR in sorted array form?(1/2)");
+//         print("Do you want to input in  Level Order OR in sorted array form?(1/2)");
 //         Scanner sc=new Scanner (System.in);
 //         int l=sc.nextInt();        sc.close();
 //         int arr[]=accept();

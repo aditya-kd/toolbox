@@ -1,9 +1,11 @@
 class Node:
-    def __init__(self, d):
-        self.data=d
-        self.next=None
+        def __init__(self, d):
+            self.data=d
+            self.next=None
 
 class LinkedList:
+
+    
     def __init__(self):
         self.head=None
 
@@ -15,7 +17,7 @@ class LinkedList:
 
     #insert at beginning
     def push_Beg(self, d):
-        newnode=Node(d)
+        newnode= Node(d)
         if self.head==None:
             self.head=newnode
         else:

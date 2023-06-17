@@ -14,7 +14,7 @@ def ngel(arr):
             index += 1
         #   ls.append(-1)
         else:
-            ls[index] = s[-1]
+            ls[index] = s[-1] 
             index += 1
 
         s.append(arr[i])

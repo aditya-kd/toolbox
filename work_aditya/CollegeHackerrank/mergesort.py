@@ -16,7 +16,7 @@ def merge(arr, l, m, r):
 	k = l	 # Initial index of merged subarray
 
 	while i < n1 and j < n2:
-		if L[i] <= R[j]:
+		if L[i] <= R[j]:	
 			arr[k] = L[i]
 			i += 1
 		else:
@@ -46,7 +46,7 @@ def mergeSort(arr, l, r):
 		merge(arr, l, m, r)
 
 
-arr = [1,1,1,2,2]
+arr = [1,1,2,2,1,1]
 n = len(arr)
 print(arr)
 mergeSort(arr, 0, n-1)

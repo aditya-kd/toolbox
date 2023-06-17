@@ -16,8 +16,8 @@ arr=[3,4,2,3,6,76,8,9]
 k=3
 print('From Function')
 print(kthLargest(arr, k))
-print('From Sorting')
-arr.sort()
+# print('From Sorting')
+# arr.sort()
 print(arr)
 
 

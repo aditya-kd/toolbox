@@ -7,6 +7,7 @@ def maxSumSubArrK(arr, n, k):
     while j<n:
 
         cursum+= arr[j]
+        
         if j-i+1 <k:            
             j+=1
         

@@ -1,6 +1,6 @@
 from collections import deque
 
-##TODO
+## TODO
 ## inorder successor
 ## postorder successor
 ## other algos
@@ -332,7 +332,7 @@ print('Non Leaf Nodes: ', tree.numNonLeafNodes(tree.root))
 print('Full Nodes: ', tree.numFullNodes(tree.root))
 print('Level Order', tree.levelOrder(tree.root))
 key=4
-print('Level order successor of ',key,': ', tree.levelOrderSuccessor(tree.root, key).data)
+# print('Level order successor of ',key,': ', tree.levelOrderSuccessor(tree.root, key).data)
 print('Minimum Depth: ', tree.minimumDepth(tree.root))
 print("Right Veiw: ",tree.rightView(tree.root))
 tree.display(tree.root)

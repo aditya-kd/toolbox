@@ -7,7 +7,7 @@ def findMidlle(head):
 
     return slow
 
-#to delete the middle node you need to take 
+# delete the middle node you need to take 
 #prev pointer and store slow in that
 #then prev.next=slow.next
 

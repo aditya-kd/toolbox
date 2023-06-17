@@ -1,6 +1,13 @@
 {
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch BSSearchInsertPost",
+            "request": "launch",
+            "mainClass": "BSSearchInsertPost",
+            "projectName": "work_3e08adc9"
+        },
+        {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",

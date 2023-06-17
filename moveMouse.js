@@ -7,8 +7,6 @@ function sleep(milliseconds) {
     } while (currentDate - date < milliseconds);
   }
 
-
-
 function move(){
 
 var twoPI = Math.PI*2.0;

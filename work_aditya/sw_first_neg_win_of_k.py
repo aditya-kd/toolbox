@@ -9,6 +9,7 @@ def first_negative(arr, n, k):
 
         if j-i+1 < k:
             j+=1
+            
         elif j-i+1 == k:
             if len(neg)==0:
                 ans.append(0)
